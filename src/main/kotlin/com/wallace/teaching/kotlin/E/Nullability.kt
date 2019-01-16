@@ -1,4 +1,4 @@
-package com.wallace.teaching.kotlin
+package com.wallace.teaching.kotlin.E
 
 fun main(args: Array<String>) {
     // Cannot be null.
@@ -14,10 +14,10 @@ fun main(args: Array<String>) {
 //    val nullStr1 = nullaFoo.toByte().toString()
 
     // Compiles. ?. will return null if nullaFoo is null, otherwise continue along the chain
-    val nullStr2 = nullaFoo?.toByte().toString()
+    val nullStr2: String? = nullaFoo?.toByte().toString()
 
     // Elvis operator ?: means if left is null, return right. So if nullaFoo is null, then nullstr4 will equal 0
-    val bar = nullaFoo?:0
+    val bar = nullaFoo?:0.toByte().toString()
 
     // Smart casting for fun and profit
     if(nullaFoo != null) {
@@ -27,6 +27,8 @@ fun main(args: Array<String>) {
 
     // Compiles. !! will throw a null pointer exception if nullaFoo is null
     val nullstr4 = nullaFoo!!.toByte().toString()
+
+    nullaFoo.toByte()
 
 
 }

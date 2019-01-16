@@ -1,4 +1,4 @@
-package com.wallace.teaching.kotlin
+package com.wallace.teaching.kotlin.B
 
 /**
  * We have enums!
@@ -37,16 +37,25 @@ fun main(args: Array<String>) {
         PhillipCountingEnum.THREE -> println("Three!")
     }
 
+    when(number) {
+        PhillipCountingEnum.FIVE -> println("Two!")
+        else -> println(number.name)
+    }
+
     val otherNumber = AlsoEnumsWithFields.FIVE
 
     // When patterns are expressions!
-    val foo = when(otherNumber) {
+    val foo: String = when(otherNumber) {
         AlsoEnumsWithFields.ONE -> "One!"
         AlsoEnumsWithFields.FIVE -> "Two!"
         AlsoEnumsWithFields.THREE -> "Three!!!"
     }
 
-    val animals = listOf<SealedClass>(Cow("Dolly", 30), Dog("Fido", "Snappy"), Cat("Mr.s Purrrrfect"))
+    val animals = listOf<SealedClass>(
+        Cow("Dolly", 30),
+        Dog("Fido", "Snappy"),
+        Cat("Mr.s Purrrrfect")
+    )
 
     for(animal in animals) {
         when(animal) {

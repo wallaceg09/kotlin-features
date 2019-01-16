@@ -1,12 +1,15 @@
-package com.wallace.teaching.kotlin
+package com.wallace.teaching.kotlin.A
 
 /**
  * Bog standard class.
  *
- * Defaults to `closed` which means nothing can extend it. Equivalent to `final class Foo {}` in Java
+ * Defaults to `closed` which means nothing can extend it. Equivalent to `final class Foo {}` in Java.
  */
 class ClosedClass(val foo: String)
 
+/**
+ * Will not compile, because closed classes cannot be subclassed.
+ */
 //class ClosedClassDeriv: ClosedClass()
 
 /**
@@ -15,13 +18,28 @@ class ClosedClass(val foo: String)
 class ClosedClassWithDefault(val foo: String = "Hello Defaults!")
 
 /**
+ * Can have multiple constructors.
+ *
+ * Not the best example, but demonstrates that it can be done.
+ */
+class ClosedWithSecondConstructor(val foo: String, val bar: Int) {
+    constructor(foo: String): this(foo, randomIntBetween0and10())
+
+    companion object {
+        fun randomIntBetween0and10(): Int {
+            return (0 .. 10).random()
+        }
+    }
+}
+
+/**
  * Open class.
  *
  * Can be subclassed. Equivalent to `class Foo {}` in Java
  */
-open class OpenClass
+open class OpenClass(val foo: Int)
 
-//class OpenClassDerivative: OpenClass()
+class OpenClassDerivative(foo: Int): OpenClass(foo)
 
 /**
  * Bog standard abstract class.
@@ -46,7 +64,9 @@ interface InterfaceClass {
 /**
  * Can extend interfaces.
  */
-class InterfaceClassImpl(override val canHaveImmutableFields: String, override var canHaveMutableFields: String) : InterfaceClass {
+class InterfaceClassImpl(override val canHaveImmutableFields: String, override var canHaveMutableFields: String) :
+    InterfaceClass {
+    // Override super methods/fields with the `override` keyword
     override fun canHaveMethods() {
         println("Sure, why not.")
     }
@@ -59,7 +79,8 @@ interface AnotherInterfaceClass {
 /**
  * We can delegate an interface's implementation to another implementation
  */
-class DelegatingClass(impl: InterfaceClassImpl): InterfaceClass by impl, AnotherInterfaceClass {
+class DelegatingClass(impl: InterfaceClassImpl): InterfaceClass by impl,
+    AnotherInterfaceClass {
     override fun foo() {
         println("Not-delegated foo.")
     }
@@ -68,7 +89,9 @@ class DelegatingClass(impl: InterfaceClassImpl): InterfaceClass by impl, Another
 /**
  * Singleton class, lazily initialize and only single instance per JVM.
  */
-object ObjectClass
+object ObjectClass {
+    val foo: String = "Hello World!"
+}
 
 /**
  * Data classes are meant to store data.
@@ -103,4 +126,6 @@ fun main(args: Array<String>) {
 
     // We can destructure data classes.
     val(foo, bar) = myDataClass
+    println(foo)
+    println(bar)
 }

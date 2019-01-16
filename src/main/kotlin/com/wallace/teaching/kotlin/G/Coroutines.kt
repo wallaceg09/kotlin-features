@@ -1,4 +1,4 @@
-package com.wallace.teaching.kotlin
+package com.wallace.teaching.kotlin.G
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job

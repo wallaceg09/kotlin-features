@@ -1,4 +1,4 @@
-package com.wallace.teaching.kotlin
+package com.wallace.teaching.kotlin.D
 
 /**
  * Small snippet from a class for Complex number computation. Utilizes operator overloading to make math with these
@@ -16,6 +16,10 @@ data class Complex(val real: Double, val imaginary: Double = 0.0) {
 
     operator fun plus(scalar: Double): Complex {
         return copy(real = real + scalar)
+    }
+
+    override fun toString(): String {
+        return "$real ${if (imaginary >= 0)"+ " else "- "}${Math.abs(imaginary)}i"
     }
 }
 

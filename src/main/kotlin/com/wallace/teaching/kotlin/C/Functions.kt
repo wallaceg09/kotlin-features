@@ -1,14 +1,14 @@
-package com.wallace.teaching.kotlin
+package com.wallace.teaching.kotlin.C
 
-fun classlessMethod() {
+fun classlessFunction() {
     println("Hello World without Classes!")
 }
 
-fun methodWithParam(foo: Int) {
+fun functionWithParam(foo: Int) {
     println(foo)
 }
 
-fun methodWithDefaultParam(foo: Int, bar: String = "fetchez la vache!") {
+fun functionWithDefaultParam(foo: Int, bar: String = "fetchez la vache!") {
     println(foo)
     println(bar)
 }
@@ -76,12 +76,12 @@ fun funception() {
  * Entrypoint method.
  */
 fun main(args: Array<String>) {
-    classlessMethod()
+    classlessFunction()
 
-    methodWithParam(3)
-    methodWithDefaultParam(2)
-    methodWithDefaultParam(2, "Eh??")
-    methodWithDefaultParam(1, bar = "FECHEZ LA VACHE!")
+    functionWithParam(3)
+    functionWithDefaultParam(2)
+    functionWithDefaultParam(2, "Eh??")
+    functionWithDefaultParam(1, bar = "FECHEZ LA VACHE!")
 
     val twoIsEven = 2.isEven()
 
@@ -92,7 +92,7 @@ fun main(args: Array<String>) {
     println("Is 3 even? ${3.isEven()}")
 
     // Can pass a function to a function that takes functions.
-    functionTakesInFunction(::classlessMethod)
+    functionTakesInFunction(::classlessFunction)
 
     // Closures are pretty neat too!
     functionTakesInFunction { println("Closures are awesome!") }
@@ -101,7 +101,7 @@ fun main(args: Array<String>) {
     functionTakesInFunctionWithParamAndOutput { it.isEven() }
 
     // Can't use `it` because there are multiple parameters.
-    functionTakesInFunctionWithMultipleParamsAndOutput {first, second -> first + second }
+    functionTakesInFunctionWithMultipleParamsAndOutput { first, second -> first + second }
 
     funception()
 
